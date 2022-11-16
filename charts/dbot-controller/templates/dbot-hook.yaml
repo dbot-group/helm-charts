@@ -44,7 +44,7 @@ spec:
                          - dbot-hook
                  topologyKey: topology.kubernetes.io/zone
          containers:
-         - image: {{ $global.image.repo }}/dbot-hook:0.0.5
+         - image: {{ .dbot.global.image.repo }}/dbot-hook:0.0.5
            name: dbot-hook
            imagePullPolicy: Always
            ports:
