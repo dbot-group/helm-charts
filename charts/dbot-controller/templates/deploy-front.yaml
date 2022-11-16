@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: dbot-front
-          image: "{{ $global.image.repo }}/dbot-frontend/dbot-frontend:{{ $global.image.tag | default "latest" }}"
+          image: "{{ $global.image.repo }}/dbot-frontend/frontend:{{ $global.image.tag | default "demo" }}"
           imagePullPolicy: Always
           env:
             {{- toYaml $values.env | nindent 12 }}
