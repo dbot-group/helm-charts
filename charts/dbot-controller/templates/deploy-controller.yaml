@@ -31,7 +31,7 @@ spec:
           image: "{{ $global.image.repo }}/dbot-controller/controller:{{ $global.image.tag | default "latest" }}"
           imagePullPolicy: Always
           command:
-            - "dbot"
+            - "dbot-controller"
           args:
             - "server"
             - "start"
@@ -47,7 +47,7 @@ spec:
                   key: CONTROLLER_GITLAB_API_TOKEN
                   name: dbot-controller-credentials
             - name: DB_HOSTNAME
-              value: stolon-proxy-service
+              value: postgres-any
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
