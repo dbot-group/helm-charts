@@ -20,18 +20,18 @@ data:
       allowedMethods: ['*']
       ignoreOptions: true
     connectors:
-      - type: saml
-        id: okta
-        name: Okta
-        config:
-          ssoURL: $DEX_SAML_SSO_URL
-          ca: /etc/dex/dex-saml/ca.crt
-          redirectURI: https://dex.dbot.{{$global.domain}}/callback
-          usernameAttr: name
-          emailAttr: email
-          entityIssuer: https://dex.dbot.{{$global.domain}}/callback
-          groupsAttr: groups
-          ssoIssuer: $DEX_SAML_SSO_ISSUER
+      # - type: saml
+      #   id: okta
+      #   name: Okta
+      #   config:
+      #     ssoURL: $DEX_SAML_SSO_URL
+      #     ca: /etc/dex/dex-saml/ca.crt
+      #     redirectURI: https://dex.dbot.{{$global.domain}}/callback
+      #     usernameAttr: name
+      #     emailAttr: email
+      #     entityIssuer: https://dex.dbot.{{$global.domain}}/callback
+      #     groupsAttr: groups
+      #     ssoIssuer: $DEX_SAML_SSO_ISSUER
 
     # Default values shown below
     oauth2:
@@ -45,5 +45,11 @@ data:
       name: 'dbot'
       secret: ZXhhbXBsZS1hcHAtc2VjcmV0
 
-    enablePasswordDB: false
+    enablePasswordDB: true
+    staticPasswords:
+    - email: "demo@dbot.com"
+      username: "demo"
+      userId: "asfgs-agdsfg-sdgfdfgh-sdgdfgh"
+      # echo somepass | htpasswd -BinC 10 admin | cut -d: f2
+      hash: $2y$10$FIrNcTLGmXvNFzgp8cPN5e8F0Uqt.VCkmLRuRakoin79Bt4Gwm0Ny
 
