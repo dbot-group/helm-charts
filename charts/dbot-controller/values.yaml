@@ -15,7 +15,7 @@ dbot:
       - name: SSO_AUTH
         value: "false"
       - name: WORKFLOW_CONTROLLER_ENABLED
-        value: "true"
+        value: "false"
       - name: HOOK_SERVICE_ENABLED
         value: "true"
       - name: HOOK_SERVICE_URL
