@@ -41,6 +41,8 @@ dbot:
                   operator: In
                   values:
                     - app
+  hook:
+    enabled: false
 
   workflowcontroller:
     enabled: false

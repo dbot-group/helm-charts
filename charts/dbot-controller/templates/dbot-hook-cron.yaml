@@ -1,5 +1,6 @@
 {{ $global := .Values.dbot.global -}}
-{{ $values := .Values.dbot.controller -}}
+{{ $values := .Values.dbot.hook -}}
+{{- if $values.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -110,4 +111,4 @@ spec:
       port: 8292
       targetPort: 8292
   type: ClusterIP
-
+{{- end }}

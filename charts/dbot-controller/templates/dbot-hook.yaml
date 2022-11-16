@@ -1,5 +1,6 @@
 {{ $global := .Values.dbot.global -}}
-{{ $values := .Values.dbot.controller -}}
+{{ $values := .Values.dbot.hook -}}
+{{- if $values.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -77,6 +78,6 @@ spec:
                    key: HOOK_GITLAB_API_TOKEN
          imagePullSecrets:
            - name: gitlab-registry
-
+{{- end }}
 
 
