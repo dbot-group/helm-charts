@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  cnpg:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2022-11-16T17:14:20.064446658Z"
+    description: HC argo app
+    digest: a5ee572cf41c41304bc29e297985d45bc302b2d54d3920e7a2a0029f77998cac
+    name: cnpg
+    urls:
+    - https://github.com/getais/helm-charts/releases/download/cnpg-0.1.0/cnpg-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-11-16T17:14:20.064474007Z"
