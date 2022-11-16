@@ -71,5 +71,4 @@ metadata:
   labels:
     app: dbot-workflow-controller
     project: dbot
-
-{{- end }}}
+{{- end }}
