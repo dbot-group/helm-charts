@@ -45,7 +45,7 @@ dbot:
   workflowcontroller:
     env:
       - name: WORKFLOW_CONTROLLER_ENABLED
-        value: "true"
+        value: "false"
       - name: WORKFLOW_CONTROLLER_DUMMY_WORKER_ENABLED
         value: "false"
     resources:
