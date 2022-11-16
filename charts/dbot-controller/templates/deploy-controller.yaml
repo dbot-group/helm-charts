@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: dbot-controller
-          image: "{{ $global.image.repo }}/dbot-controller:{{ $global.image.tag | default latest }}"
+          image: "{{ $global.image.repo }}/dbot-controller:{{ $global.image.tag | default "latest" }}"
           imagePullPolicy: Always
           command:
             - "dbot"
