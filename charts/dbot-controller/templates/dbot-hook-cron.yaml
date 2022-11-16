@@ -1,0 +1,111 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: dbot-hook-cron
+   labels:
+      app: dbot-hook
+      project: dbot
+   namespace: dbot
+spec:
+   selector:
+      matchLabels:
+         app: dbot-hook
+   strategy:
+      type: Recreate
+   replicas: 1
+   template:
+      metadata:
+         labels:
+            app: dbot-hook
+      spec:
+         terminationGracePeriodSeconds: 3
+         affinity:
+           nodeAffinity:
+             requiredDuringSchedulingIgnoredDuringExecution:
+               nodeSelectorTerms:
+                 - matchExpressions:
+                     - key: agentpool
+                       operator: In
+                       values:
+                         - main
+                 - matchExpressions:
+                     - key: pool-type
+                       operator: In
+                       values:
+                         - main
+           podAntiAffinity:
+             requiredDuringSchedulingIgnoredDuringExecution:
+               - labelSelector:
+                   matchExpressions:
+                     - key: app
+                       operator: In
+                       values:
+                         - dbot-hook
+                 topologyKey: topology.kubernetes.io/zone
+         containers:
+         - image: {{ $global.image.repo }}/dbot-hook:0.0.5
+           name: dbot-hook
+           imagePullPolicy: Always
+           ports:
+             - containerPort: 8292
+           resources:
+              limits:
+                memory: "2048Mi"
+                cpu: 2600m
+              requests:
+                memory: "512Mi"
+                cpu: 300m
+           env:
+             - name: DBOT_ARGO_TOKEN
+               valueFrom:
+                 secretKeyRef:
+                   name: dbot-hook-credentials
+                   key: HOOK_ARGOCD_API_TOKEN
+             - name: DBOT_SRE_API_ENABLE
+               value: "True"
+             - name: DBOT_LOGLEVEL
+               value: "info"
+             - name: DBOT_SRE_API_HOST
+               value: "http://dbot-controller.dbot:8080"
+             - name: DBOT_GITLAB_TOKEN
+               valueFrom:
+                 secretKeyRef:
+                   name: dbot-hook-credentials
+                   key: HOOK_GITLAB_API_TOKEN
+         - image: {{ $global.image.repo }}/dbot-cron:0.0.4
+           name: dbot-cron
+           imagePullPolicy: Always
+           resources:
+              limits:
+                memory: "256Mi"
+                cpu: 300m
+              requests:
+                memory: "128Mi"
+                cpu: 100m
+           env:
+             - name: DBOT_WEBHOOK_TOKEN
+               valueFrom:
+                 secretKeyRef:
+                   name: dbot-hook-credentials
+                   key: HOOK_WEBHOOK_TOKEN
+             - name: DBOT_LOGLEVEL
+               value: "info"
+             - name: DBOT_WEBHOOK_HOST
+               value: "http://localhost:8292"
+         imagePullSecrets:
+           - name: gitlab-registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dbot-hook
+spec:
+  selector:
+    app: dbot-hook
+  ports:
+    - protocol: TCP
+      port: 8292
+      targetPort: 8292
+  type: ClusterIP
+

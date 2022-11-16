@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: dbot-front
+    project: dbot
+  name: dbot-front
+  namespace: dbot
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+      name: http
+  selector:
+    app: dbot-front
+  sessionAffinity: None
+  type: ClusterIP

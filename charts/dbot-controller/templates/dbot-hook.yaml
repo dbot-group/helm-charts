@@ -1,0 +1,80 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: dbot-hook
+   labels:
+      app: dbot-hook
+      project: dbot
+   namespace: dbot
+spec:
+   selector:
+      matchLabels:
+         app: dbot-hook
+   strategy:
+      type: Recreate
+   replicas: 2
+   template:
+      metadata:
+         labels:
+            app: dbot-hook
+      spec:
+         terminationGracePeriodSeconds: 3
+         affinity:
+           nodeAffinity:
+             requiredDuringSchedulingIgnoredDuringExecution:
+               nodeSelectorTerms:
+                 - matchExpressions:
+                     - key: agentpool
+                       operator: In
+                       values:
+                         - main
+                 - matchExpressions:
+                     - key: pool-type
+                       operator: In
+                       values:
+                         - main
+           podAntiAffinity:
+             requiredDuringSchedulingIgnoredDuringExecution:
+               - labelSelector:
+                   matchExpressions:
+                     - key: app
+                       operator: In
+                       values:
+                         - dbot-hook
+                 topologyKey: topology.kubernetes.io/zone
+         containers:
+         - image: {{ $global.image.repo }}/dbot-hook:0.0.5
+           name: dbot-hook
+           imagePullPolicy: Always
+           ports:
+             - containerPort: 8292
+           resources:
+              limits:
+                memory: "2048Mi"
+                cpu: 2600m
+              requests:
+                memory: "512Mi"
+                cpu: 300m
+           env:
+             - name: DBOT_ARGO_TOKEN
+               valueFrom:
+                 secretKeyRef:
+                   name: dbot-hook-credentials
+                   key: HOOK_ARGOCD_API_TOKEN
+             - name: DBOT_SRE_API_ENABLE
+               value: "True"
+             - name: DBOT_LOGLEVEL
+               value: "info"
+             - name: DBOT_SRE_API_HOST
+               value: "http://dbot-controller.dbot:8080"
+             - name: DBOT_GITLAB_TOKEN
+               valueFrom:
+                 secretKeyRef:
+                   name: dbot-hook-credentials
+                   key: HOOK_GITLAB_API_TOKEN
+         imagePullSecrets:
+           - name: gitlab-registry
+
+
+

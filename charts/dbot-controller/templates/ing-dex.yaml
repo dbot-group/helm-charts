@@ -1,0 +1,30 @@
+{{ $global := .Values.dbot.global -}}
+{{ $values := .Values.dbot.controller -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: prod-issuer
+    external-dns.alpha.kubernetes.io/hostname: dex.dbot.{{$global.domain}}.
+    kubernetes.io/ingress.class: nginx-internal
+  labels:
+    app: dbot-dex
+    project: dbot
+  name: dbot-dex
+  namespace: dbot
+spec:
+  rules:
+    - host: dex.dbot.{{$global.domain}}
+      http:
+        paths:
+          - backend:
+              service:
+                name: dbot-dex
+                port:
+                  number: 5556
+            path: /
+            pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - dex.dbot.{{$global.domain}}
+      secretName: dex.dbot.ingress.tls

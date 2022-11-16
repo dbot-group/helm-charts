@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kourier.io/job: dex
+    kourier.io/path: /metrics
+    kourier.io/port: "5556"
+    kourier.io/scrape: "true"
+  labels:
+    app: dbot-dex
+    project: dbot
+  name: dex
+  namespace: dbot
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: dbot-dex
+      project: dbot
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: dbot-dex
+        project: dbot
+    spec:
+      containers:
+      - command:
+        - /usr/local/bin/dex
+        - serve
+        - /etc/dex/cfg/config.yaml
+        env:
+        - name: DEX_SAML_SSO_URL
+          valueFrom:
+            secretKeyRef:
+              key: DEX_SAML_SSO_URL
+              name: dex-saml
+        - name: DEX_SAML_SSO_ISSUER
+          valueFrom:
+            secretKeyRef:
+              key: DEX_SAML_SSO_ISSUER
+              name: dex-saml
+        image: ghcr.io/dexidp/dex:v2.30.0
+        imagePullPolicy: IfNotPresent
+        name: dex
+        ports:
+        - containerPort: 5556
+          name: https
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 5556
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/dex/cfg
+          name: config
+        - mountPath: /etc/dex/tls
+          name: tls
+        - mountPath: /etc/dex/dex-saml
+          name: dex-saml
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        runAsUser: 0
+      serviceAccount: dbot-dex
+      serviceAccountName: dbot-dex
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: config.yaml
+            path: config.yaml
+          name: dex-config
+        name: config
+      - name: tls
+        secret:
+          defaultMode: 420
+          secretName: dex.dbot.ingress.tls
+      - name: dex-saml
+        secret:
+          defaultMode: 420
+          secretName: dex-saml

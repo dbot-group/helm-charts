@@ -1,0 +1,49 @@
+{{ $global := .Values.dbot.global -}}
+{{ $values := .Values.dbot.controller -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dex-config
+  labels:
+    app: dbot-dex
+    project: dbot
+data:
+  config.yaml: |
+    issuer: https://dex.dbot.{{$global.domain}}
+    storage:
+      type: kubernetes
+      config:
+        inCluster: true
+    web:
+      http: 0.0.0.0:5556
+      allowedOrigins: ['*']
+      allowedMethods: ['*']
+      ignoreOptions: true
+    connectors:
+      - type: saml
+        id: okta
+        name: Okta
+        config:
+          ssoURL: $DEX_SAML_SSO_URL
+          ca: /etc/dex/dex-saml/ca.crt
+          redirectURI: https://dex.dbot.{{$global.domain}}/callback
+          usernameAttr: name
+          emailAttr: email
+          entityIssuer: https://dex.dbot.{{$global.domain}}/callback
+          groupsAttr: groups
+          ssoIssuer: $DEX_SAML_SSO_ISSUER
+
+    # Default values shown below
+    oauth2:
+      skipApprovalScreen: true
+
+    staticClients:
+    - id: dbot
+      redirectURIs:
+      - 'http://localhost:3000/oauth_callback.html'
+      - 'https://dbot.{{$global.domain}}/oauth_callback.html'
+      name: 'dbot'
+      secret: ZXhhbXBsZS1hcHAtc2VjcmV0
+
+    enablePasswordDB: false
+

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: dbot-dex
+    project: dbot
+  name: dbot-dex
+  namespace: dbot
+spec:
+  ports:
+    - port: 5556
+      protocol: TCP
+      targetPort: 5556
+      name: http
+  selector:
+    app: dbot-dex
+    project: dbot
+  sessionAffinity: None
+  type: ClusterIP

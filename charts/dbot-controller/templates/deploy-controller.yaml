@@ -1,0 +1,102 @@
+{{ $global := .Values.dbot.global -}}
+{{ $values := .Values.dbot.controller -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dbot-controller
+  labels:
+    app: dbot-controller
+    project: dbot
+  namespace: dbot
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+     matchLabels:
+        app: dbot-controller
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: dbot-controller
+        project: dbot
+    spec:
+      containers:
+        - name: dbot-controller
+          image: "{{ $global.image.repo }}/dbot-controller:{{ $global.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: Always
+          command:
+            - "dbot"
+          args:
+            - "server"
+            - "start"
+          env:
+            - name: HOOK_SERVICE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: HOOK_SERVICE_TOKEN
+                  name: dbot-controller-credentials
+            - name: GITLAB_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: CONTROLLER_GITLAB_API_TOKEN
+                  name: dbot-controller-credentials
+            - name: DB_HOSTNAME
+              value: stolon-proxy-service
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: postgresql-platform-internal
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: postgresql-platform-internal
+            - name: RABBITMQ_HOSTNAME
+              valueFrom:
+                secretKeyRef:
+                  key: host
+                  name: rabbitmq-dbot-default-user
+            - name: RABBITMQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: rabbitmq-dbot-default-user
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: rabbitmq-dbot-default-user
+            {{- toYaml $values.env | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            {{- toYaml $values.resources | nindent 12 }}
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 3
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      imagePullSecrets:
+        - name: gitlab-registry
+      serviceAccountName: dbot-controller
+      {{- with $values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
