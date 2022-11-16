@@ -10,10 +10,10 @@ dbot:
         value: "false"
       - name: DUMP_JSON_FILE
         value: "false"
-      - name: AGENT_AUTH
+      - name: AGENT_AUTH_ENABLED
         value: "false"
-      - name: SSO_AUTH
-        value: "false"
+      - name: SSO_AUTH_ENABLED
+        value: "true"
       - name: WORKFLOW_CONTROLLER_ENABLED
         value: "false"
       - name: HOOK_SERVICE_ENABLED
