@@ -12,7 +12,7 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: dbot.{{$global.domain}}.
     kubernetes.io/ingress.class: traefik-int
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: true
+    traefik.ingress.kubernetes.io/router.tls: "true"
 
   labels:
     app: dbot-front
