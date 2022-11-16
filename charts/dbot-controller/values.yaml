@@ -22,11 +22,11 @@ dbot:
         value: "http://dbot-hook.dbot:8292"
     resources:
       limits:
-        memory: "3Gi"
-        cpu: 4
+        memory: "2Gi"
+        cpu: 1
       requests:
-        memory: "1Gi"
-        cpu: 2
+        memory: "512Mi"
+        cpu: 200m
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
@@ -51,10 +51,10 @@ dbot:
     resources:
       limits:
         memory: "2Gi"
-        cpu: 2
+        cpu: 1
       requests:
         memory: "512Mi"
-        cpu: 1
+        cpu: 200m
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
