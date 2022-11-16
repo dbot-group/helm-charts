@@ -1,5 +1,6 @@
 {{ $global := .Values.dbot.global -}}
 {{ $values := .Values.dbot.workflowcontroller -}}
+  {{- if $values.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -67,3 +68,4 @@ spec:
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
+  {{- end }}
