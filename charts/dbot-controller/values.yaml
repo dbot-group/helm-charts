@@ -35,12 +35,12 @@ dbot:
                 - key: agentpool
                   operator: In
                   values:
-                    - main
+                    - app
             - matchExpressions:
                 - key: pool-type
                   operator: In
                   values:
-                    - main
+                    - app
 
   workflowcontroller:
     env:
@@ -63,9 +63,9 @@ dbot:
                 - key: agentpool
                   operator: In
                   values:
-                    - main
+                    - app
             - matchExpressions:
                 - key: pool-type
                   operator: In
                   values:
-                    - main
+                    - app
