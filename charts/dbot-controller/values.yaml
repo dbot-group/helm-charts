@@ -1,9 +1,9 @@
 dbot:
   global:
     image:
-      repo: github.com/dbot-group
+      repo: ghcr.io/dbot-group
       # tag: v0.2.0
-    domain: example.com
+    domain: mgmt-dev.promarkcloud.com
   controller:
     env:
       - name: DEBUG_REQUESTS

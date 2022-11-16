@@ -4,9 +4,11 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    cert-manager.io/cluster-issuer: prod-issuer
+    cert-manager.io/cluster-issuer: letsencrypt-http
     external-dns.alpha.kubernetes.io/hostname: dex.dbot.{{$global.domain}}.
-    kubernetes.io/ingress.class: nginx-internal
+    kubernetes.io/ingress.class: traefik-int
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: true
   labels:
     app: dbot-dex
     project: dbot
