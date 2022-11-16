@@ -1,0 +1,6 @@
+enabled: true
+cloudnative-pg:
+  # -- Annotations to be added to the pod
+  podAnnotations: {}
+  # -- Annotations to be added to all other resources
+  commonAnnotations: {}
