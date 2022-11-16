@@ -2,7 +2,7 @@ dbot:
   global:
     image:
       repo: ghcr.io/dbot-group
-      # tag: v0.2.0
+      #tag: v0.2.0
     domain: mgmt-dev.promarkcloud.com
   controller:
     env:
