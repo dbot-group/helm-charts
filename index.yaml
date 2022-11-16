@@ -10,4 +10,17 @@ entries:
     urls:
     - https://github.com/getais/helm-charts/releases/download/cnpg-0.1.0/cnpg-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-16T17:14:20.064474007Z"
+  dbot-controller:
+  - apiVersion: v1
+    appVersion: 0.1.10
+    created: "2022-11-16T17:30:47.277383143Z"
+    description: DBOT-controller - central place for DBOT agents
+    digest: a16e90a6028f5aca78659570f352419469e65df2628aa93e9cc0d4ad2082e59a
+    maintainers:
+    - email: tomas.liumparas@gmail.com
+      name: Tomas Liumparas
+    name: dbot-controller
+    urls:
+    - https://github.com/dbot-group/helm-charts/releases/download/dbot-controller-0.1.10/dbot-controller-0.1.10.tgz
+    version: 0.1.10
+generated: "2022-11-16T17:30:47.277396104Z"
