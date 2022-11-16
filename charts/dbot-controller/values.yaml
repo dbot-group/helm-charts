@@ -43,7 +43,7 @@ dbot:
                     - app
 
   workflowcontroller:
-    enabled: "false"
+    enabled: false
     env:
       - name: WORKFLOW_CONTROLLER_ENABLED
         value: "false"
