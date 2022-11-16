@@ -1,3 +1,5 @@
+{{ $global := .Values.dbot.global -}}
+{{ $values := .Values.dbot.controller -}}
 ---
 apiVersion: apps/v1
 kind: Deployment

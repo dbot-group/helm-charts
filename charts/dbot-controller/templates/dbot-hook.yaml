@@ -1,3 +1,5 @@
+{{ $global := .Values.dbot.global -}}
+{{ $values := .Values.dbot.controller -}}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -44,7 +46,7 @@ spec:
                          - dbot-hook
                  topologyKey: topology.kubernetes.io/zone
          containers:
-         - image: {{ .dbot.global.image.repo }}/dbot-hook:0.0.5
+         - image: {{ $global.image.repo }}/dbot-hook:0.0.5
            name: dbot-hook
            imagePullPolicy: Always
            ports:
