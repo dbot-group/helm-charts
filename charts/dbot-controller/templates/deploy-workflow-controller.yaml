@@ -29,10 +29,10 @@ spec:
     spec:
       containers:
         - name: dbot-workflow-controller
-          image: "{{ $global.image.repo }}/dbot-controller:{{ $global.image.tag | default "latest" }}"
+          image: "{{ $global.image.repo }}/dbot-controller/controller:{{ $global.image.tag | default "latest" }}"
           imagePullPolicy: Always
           command:
-            - "dbot"
+            - "dbot-controller"
           args:
             - "wc"
             - "start"
