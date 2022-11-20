@@ -31,6 +31,17 @@ entries:
     version: 0.1.0
   dbot-controller:
   - apiVersion: v1
+    created: "2022-11-20T07:43:44.148163758Z"
+    description: DBOT-controller - central place for DBOT agents
+    digest: 4992b0e4c33dc7a37777efb87f02119df89e9e068a8044302aa8d2802e9b1d0c
+    maintainers:
+    - email: tomas.liumparas@gmail.com
+      name: Tomas Liumparas
+    name: dbot-controller
+    urls:
+    - https://github.com/dbot-group/helm-charts/releases/download/dbot-controller-0.1.13/dbot-controller-0.1.13.tgz
+    version: 0.1.13
+  - apiVersion: v1
     created: "2022-11-20T07:12:44.039644675Z"
     description: DBOT-controller - central place for DBOT agents
     digest: 78b3a09983e766afe7f4d52e7387f09c89cbf9253d7c434577ea331f2071e42d
@@ -65,4 +76,4 @@ entries:
     urls:
     - https://github.com/dbot-group/helm-charts/releases/download/dbot-controller-0.1.10/dbot-controller-0.1.10.tgz
     version: 0.1.10
-generated: "2022-11-20T07:12:44.039667438Z"
+generated: "2022-11-20T07:43:44.148203897Z"
