@@ -97,7 +97,7 @@ spec:
              - name: DBOT_WEBHOOK_HOST
                value: "http://localhost:8292"
          imagePullSecrets:
-           - name: gitlab-registry
+           - name: registry-credentials
 ---
 apiVersion: v1
 kind: Service

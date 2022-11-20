@@ -90,7 +90,7 @@ spec:
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
       imagePullSecrets:
-        - name: gitlab-registry
+        - name: registry-credentials
       serviceAccountName: dbot-controller
       {{- with $values.affinity }}
       affinity:
