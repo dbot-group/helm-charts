@@ -148,6 +148,14 @@ entries:
     version: 0.1.0
   rabbitmq-operator:
   - apiVersion: v1
+    created: "2022-11-20T22:04:38.293754911Z"
+    description: RabbitMQ operator
+    digest: 0a207e7d8bb2c1327955890434a8a80aebabaeb7635e58878cf39d72aad419dd
+    name: rabbitmq-operator
+    urls:
+    - https://github.com/dbot-group/helm-charts/releases/download/rabbitmq-operator-2.0.1/rabbitmq-operator-2.0.1.tgz
+    version: 2.0.1
+  - apiVersion: v1
     created: "2022-11-20T22:00:56.14711974Z"
     description: RabbitMQ operator
     digest: 64a90a92e7b4265f70fcb3f2a24551b2bccbcd65e9f2f17f5b640ea16bd745f5
@@ -155,4 +163,4 @@ entries:
     urls:
     - https://github.com/dbot-group/helm-charts/releases/download/rabbitmq-operator-2.0.0/rabbitmq-operator-2.0.0.tgz
     version: 2.0.0
-generated: "2022-11-20T22:00:56.147164722Z"
+generated: "2022-11-20T22:04:38.2937939Z"
