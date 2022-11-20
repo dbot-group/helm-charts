@@ -52,12 +52,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: username
-                  name: postgresql-platform-internal
+                  name: postgres-app
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: postgresql-platform-internal
+                  name: postgres-app
             - name: RABBITMQ_HOSTNAME
               valueFrom:
                 secretKeyRef:
