@@ -2,7 +2,7 @@ enabled: true
 credentials:
   email: ""
   username: ""
-issuer:
+issuers:
   dns: {}
 cert-manager:
   installCRDs: true
