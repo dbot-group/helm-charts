@@ -1,0 +1,9 @@
+{{ $global := .Values.dbot.global -}}
+{{ $values := .Values.dbot.rabbitmq -}}
+{{- if $values.enabled }}
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: dbot
+{{- end }}

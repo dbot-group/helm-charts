@@ -10,7 +10,9 @@ dbot:
       SAML_SSO_ISSUER: ""
       SAML_CA: ""
   rabbitmq:
-    credentials:
+    deploy: true
+    secret:
+      create: false
       host: ""
       username: ""
       password: ""

@@ -1,5 +1,6 @@
 {{ $global := .Values.dbot.global -}}
 {{ $values := .Values.dbot.controller -}}
+{{ $rabbitmq := .Values.dbot.rabbitmq.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -62,17 +63,17 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: host
-                  name: rabbitmq-credentials
+                  name: dbot-default-user
             - name: RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:
                   key: username
-                  name: rabbitmq-credentials
+                  name: dbot-default-user
             - name: RABBITMQ_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: rabbitmq-credentials
+                  name: dbot-default-user
             {{- toYaml $values.env | nindent 12 }}
           ports:
             - name: http

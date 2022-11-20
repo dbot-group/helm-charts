@@ -1,5 +1,6 @@
 {{ $global := .Values.dbot.global -}}
 {{ $values := .Values.dbot.workflowcontroller -}}
+{{ $rabbitmq := .Values.dbot.rabbitmq.enabled -}}
   {{- if $values.enabled }}
 apiVersion: apps/v1
 kind: Deployment
@@ -37,21 +38,23 @@ spec:
             - "wc"
             - "start"
           env:
+            {{- if $rabbitmq }}    
             - name: RABBITMQ_HOSTNAME
               valueFrom:
                 secretKeyRef:
                   key: host
-                  name: rabbitmq-credentials
+                  name: dbot-default-user
             - name: RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:
                   key: username
-                  name: rabbitmq-credentials
+                  name: dbot-default-user
             - name: RABBITMQ_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: rabbitmq-credentials
+                  name: dbot-default-user
+            {{- end }}
             {{- toYaml $values.env | nindent 12 }}
           resources:
             {{- toYaml $values.resources | nindent 12 }}
