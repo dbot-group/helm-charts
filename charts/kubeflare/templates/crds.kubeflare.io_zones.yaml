@@ -1,0 +1,175 @@
+
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.4.1
+  creationTimestamp: null
+  name: zones.crds.kubeflare.io
+spec:
+  group: crds.kubeflare.io
+  names:
+    kind: Zone
+    listKind: ZoneList
+    plural: zones
+    singular: zone
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Zone is the Schema for the zones API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: ZoneSpec defines the desired state of Zone
+            properties:
+              apiToken:
+                type: string
+              settings:
+                properties:
+                  0rtt:
+                    type: boolean
+                  advancedDDOS:
+                    type: boolean
+                  alwaysOnline:
+                    type: boolean
+                  alwaysUseHttps:
+                    type: boolean
+                  automaticHTTPSRewrites:
+                    type: boolean
+                  brotli:
+                    type: boolean
+                  browserCacheTTL:
+                    type: integer
+                  browserCheck:
+                    type: boolean
+                  cacheLevel:
+                    type: string
+                  challengeTTL:
+                    type: integer
+                  ciphers:
+                    items:
+                      type: string
+                    type: array
+                  developmentMode:
+                    type: boolean
+                  emailObfuscation:
+                    type: boolean
+                  hotlinkProtection:
+                    type: boolean
+                  http2:
+                    type: boolean
+                  http2Prioritization:
+                    type: boolean
+                  http3:
+                    type: boolean
+                  imageResizing:
+                    type: boolean
+                  ipGeolocation:
+                    type: boolean
+                  ipv6:
+                    type: boolean
+                  minTLSVersion:
+                    type: string
+                  minify:
+                    properties:
+                      css:
+                        type: boolean
+                      html:
+                        type: boolean
+                      js:
+                        type: boolean
+                    type: object
+                  mirage:
+                    type: boolean
+                  mobileRedirect:
+                    properties:
+                      mobileSubdomain:
+                        type: string
+                      status:
+                        type: boolean
+                      stripURI:
+                        type: boolean
+                    required:
+                    - status
+                    type: object
+                  opportunisticEncryption:
+                    type: boolean
+                  opportunisticOnion:
+                    type: boolean
+                  originErrorPagePassThru:
+                    type: boolean
+                  polish:
+                    type: boolean
+                  prefetchPreload:
+                    type: boolean
+                  privacyPass:
+                    type: boolean
+                  pseudoIPV4:
+                    type: boolean
+                  responseBuffering:
+                    type: boolean
+                  rocketLoader:
+                    type: boolean
+                  securityHeader:
+                    properties:
+                      enabled:
+                        type: boolean
+                      includeSubdomains:
+                        type: boolean
+                      maxAge:
+                        type: integer
+                      noSniff:
+                        type: boolean
+                    type: object
+                  securityLevel:
+                    type: string
+                  serverSideExclude:
+                    type: boolean
+                  sortQueryStringForCache:
+                    type: boolean
+                  ssl:
+                    type: boolean
+                  tls13:
+                    type: boolean
+                  tlsClientAuth:
+                    type: boolean
+                  trueClientIPHeader:
+                    type: boolean
+                  waf:
+                    type: boolean
+                  webp:
+                    type: boolean
+                  websockets:
+                    type: boolean
+                type: object
+            required:
+            - apiToken
+            type: object
+          status:
+            description: ZoneStatus defines the observed state of Zone
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

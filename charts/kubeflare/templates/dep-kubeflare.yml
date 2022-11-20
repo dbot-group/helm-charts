@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeflare
+  namespace: kubeflare-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubeflare
+  template:
+    metadata:
+      labels:
+        app: kubeflare
+    spec:
+      serviceAccountName: kubeflare
+      containers:
+      - name: kubeflare
+        image: replicated/kubeflare-manager:0.2.0
+        imagePullPolicy: IfNotPresent
