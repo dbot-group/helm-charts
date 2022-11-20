@@ -146,4 +146,13 @@ entries:
     urls:
     - https://github.com/dbot-group/helm-charts/releases/download/kyverno-policies-0.1.0/kyverno-policies-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-20T21:47:26.209355386Z"
+  rabbitmq-operator:
+  - apiVersion: v1
+    created: "2022-11-20T22:00:56.14711974Z"
+    description: RabbitMQ operator
+    digest: 64a90a92e7b4265f70fcb3f2a24551b2bccbcd65e9f2f17f5b640ea16bd745f5
+    name: rabbitmq-operator
+    urls:
+    - https://github.com/dbot-group/helm-charts/releases/download/rabbitmq-operator-2.0.0/rabbitmq-operator-2.0.0.tgz
+    version: 2.0.0
+generated: "2022-11-20T22:00:56.147164722Z"
