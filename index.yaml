@@ -31,6 +31,17 @@ entries:
     version: 0.1.0
   dbot-controller:
   - apiVersion: v1
+    created: "2022-11-20T22:26:07.571184746Z"
+    description: DBOT-controller - central place for DBOT agents
+    digest: 79371a78fb1f431f948771e704ddb447fb57440b83438bab7b6985ad7e2c6684
+    maintainers:
+    - email: tomas.liumparas@gmail.com
+      name: Tomas Liumparas
+    name: dbot-controller
+    urls:
+    - https://github.com/dbot-group/helm-charts/releases/download/dbot-controller-0.2.1/dbot-controller-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v1
     created: "2022-11-20T21:47:25.599339212Z"
     description: DBOT-controller - central place for DBOT agents
     digest: f7ff020613bb5356969e4a5b9694b00b2d7b661954230a9e544d6a4d7316523c
@@ -163,4 +174,4 @@ entries:
     urls:
     - https://github.com/dbot-group/helm-charts/releases/download/rabbitmq-operator-2.0.0/rabbitmq-operator-2.0.0.tgz
     version: 2.0.0
-generated: "2022-11-20T22:04:38.2937939Z"
+generated: "2022-11-20T22:26:08.38965999Z"
