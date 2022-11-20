@@ -100,6 +100,15 @@ entries:
   kyverno-policies:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2022-11-20T08:33:27.782240235Z"
+    description: HC argo app
+    digest: 6f27fc2d3b0bc249ba0b9529db59f14324e8517e54adf6c33a23994dfba891c0
+    name: kyverno-policies
+    urls:
+    - https://github.com/dbot-group/helm-charts/releases/download/kyverno-policies-0.1.1/kyverno-policies-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2022-11-20T08:03:26.06231414Z"
     description: HC argo app
     digest: 23ca1be0fc2d888ca391155006c0d9c43e59dd36761de4a965c32dd3fd11216d
@@ -107,4 +116,4 @@ entries:
     urls:
     - https://github.com/dbot-group/helm-charts/releases/download/kyverno-policies-0.1.0/kyverno-policies-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-20T08:03:26.062342382Z"
+generated: "2022-11-20T08:33:27.78226986Z"
