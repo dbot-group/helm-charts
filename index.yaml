@@ -31,6 +31,17 @@ entries:
     version: 0.1.0
   dbot-controller:
   - apiVersion: v1
+    created: "2022-11-20T21:47:25.599339212Z"
+    description: DBOT-controller - central place for DBOT agents
+    digest: f7ff020613bb5356969e4a5b9694b00b2d7b661954230a9e544d6a4d7316523c
+    maintainers:
+    - email: tomas.liumparas@gmail.com
+      name: Tomas Liumparas
+    name: dbot-controller
+    urls:
+    - https://github.com/dbot-group/helm-charts/releases/download/dbot-controller-0.2.0/dbot-controller-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v1
     created: "2022-11-20T07:52:34.172953996Z"
     description: DBOT-controller - central place for DBOT agents
     digest: 5c0177bb060cd8afb84e359a692ab18e229a37b67abe9fc74a4f113468232421
@@ -135,4 +146,4 @@ entries:
     urls:
     - https://github.com/dbot-group/helm-charts/releases/download/kyverno-policies-0.1.0/kyverno-policies-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-20T20:33:12.447588542Z"
+generated: "2022-11-20T21:47:26.209355386Z"
