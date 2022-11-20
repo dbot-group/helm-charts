@@ -29,8 +29,6 @@ dbot:
         value: "false"
       - name: SSO_AUTH_ENABLED
         value: "true"
-      - name: WORKFLOW_CONTROLLER_ENABLED
-        value: "false"
       - name: HOOK_SERVICE_ENABLED
         value: "true"
       - name: HOOK_SERVICE_URL
@@ -62,8 +60,6 @@ dbot:
   workflowcontroller:
     enabled: false
     env:
-      - name: WORKFLOW_CONTROLLER_ENABLED
-        value: "false"
       - name: WORKFLOW_CONTROLLER_DUMMY_WORKER_ENABLED
         value: "false"
     resources:

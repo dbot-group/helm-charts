@@ -1,7 +1,6 @@
 {{ $global := .Values.dbot.global -}}
 {{ $values := .Values.dbot.workflowcontroller -}}
-{{ $rabbitmq := .Values.dbot.rabbitmq.enabled -}}
-  {{- if $values.enabled }}
+{{- if $values.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -37,8 +36,7 @@ spec:
           args:
             - "wc"
             - "start"
-          env:
-            {{- if $rabbitmq }}    
+          env: 
             - name: RABBITMQ_HOSTNAME
               valueFrom:
                 secretKeyRef:
@@ -54,7 +52,8 @@ spec:
                 secretKeyRef:
                   key: password
                   name: dbot-default-user
-            {{- end }}
+            - name: WORKFLOW_CONTROLLER_ENABLED
+              value: "true"                  
             {{- toYaml $values.env | nindent 12 }}
           resources:
             {{- toYaml $values.resources | nindent 12 }}
@@ -71,4 +70,4 @@ spec:
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
-  {{- end }}
+{{- end }}

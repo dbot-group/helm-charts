@@ -1,6 +1,6 @@
 {{ $global := .Values.dbot.global -}}
 {{ $values := .Values.dbot.controller -}}
-{{ $rabbitmq := .Values.dbot.rabbitmq.enabled -}}
+{{ $wc := .Values.dbot.workflowcontroller.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -74,6 +74,10 @@ spec:
                 secretKeyRef:
                   key: password
                   name: dbot-default-user
+            {{- if $wc }}
+            - name: WORKFLOW_CONTROLLER_ENABLED
+              value: "true" 
+            {{- end }}                 
             {{- toYaml $values.env | nindent 12 }}
           ports:
             - name: http
