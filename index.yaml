@@ -87,6 +87,16 @@ entries:
     urls:
     - https://github.com/dbot-group/helm-charts/releases/download/dbot-controller-0.1.10/dbot-controller-0.1.10.tgz
     version: 0.1.10
+  kubeflare:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2022-11-20T20:28:40.628421984Z"
+    description: HC argo app
+    digest: e409ad4efcd4537cde16838dcacddb76dfb3ff228829c6ee5ce37a73e6edc11a
+    name: kubeflare
+    urls:
+    - https://github.com/dbot-group/helm-charts/releases/download/kubeflare-0.2.0/kubeflare-0.2.0.tgz
+    version: 0.2.0
   kyverno:
   - apiVersion: v1
     appVersion: "1.0"
@@ -116,4 +126,4 @@ entries:
     urls:
     - https://github.com/dbot-group/helm-charts/releases/download/kyverno-policies-0.1.0/kyverno-policies-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-20T08:33:27.78226986Z"
+generated: "2022-11-20T20:28:41.018670418Z"
