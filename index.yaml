@@ -90,6 +90,15 @@ entries:
   kubeflare:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2022-11-20T20:33:12.029920672Z"
+    description: Kubeflare - Cloudflare k8s operator
+    digest: 88758e8f1aa46e69f205cf60d5ed90bbb1106dfdab30c2153a64131bf7c5e4e3
+    name: kubeflare
+    urls:
+    - https://github.com/dbot-group/helm-charts/releases/download/kubeflare-0.2.1/kubeflare-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2022-11-20T20:28:40.628421984Z"
     description: HC argo app
     digest: e409ad4efcd4537cde16838dcacddb76dfb3ff228829c6ee5ce37a73e6edc11a
@@ -126,4 +135,4 @@ entries:
     urls:
     - https://github.com/dbot-group/helm-charts/releases/download/kyverno-policies-0.1.0/kyverno-policies-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-20T20:28:41.018670418Z"
+generated: "2022-11-20T20:33:12.447588542Z"
