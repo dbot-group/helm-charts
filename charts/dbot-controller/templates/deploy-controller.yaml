@@ -44,7 +44,7 @@ spec:
             - name: GITLAB_API_TOKEN
               valueFrom:
                 secretKeyRef:
-                  key: CONTROLLER_GITLAB_API_TOKEN
+                  key: GITLAB_API_TOKEN
                   name: dbot-controller-credentials
             - name: DB_HOSTNAME
               value: postgres-any
@@ -62,17 +62,17 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: host
-                  name: rabbitmq-dbot-default-user
+                  name: rabbitmq-credentials
             - name: RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:
                   key: username
-                  name: rabbitmq-dbot-default-user
+                  name: rabbitmq-credentials
             - name: RABBITMQ_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: rabbitmq-dbot-default-user
+                  name: rabbitmq-credentials
             {{- toYaml $values.env | nindent 12 }}
           ports:
             - name: http

@@ -24,14 +24,14 @@ data:
       #   id: okta
       #   name: Okta
       #   config:
-      #     ssoURL: $DEX_SAML_SSO_URL
-      #     ca: /etc/dex/dex-saml/ca.crt
+      #     ssoURL: $SAML_SSO_URL
+      #     ca: /etc/dex/dex-credentials/SAML_CA
       #     redirectURI: https://dex.dbot.{{$global.domain}}/callback
       #     usernameAttr: name
       #     emailAttr: email
       #     entityIssuer: https://dex.dbot.{{$global.domain}}/callback
       #     groupsAttr: groups
-      #     ssoIssuer: $DEX_SAML_SSO_ISSUER
+      #     ssoIssuer: $SAML_SSO_ISSUER
 
     # Default values shown below
     oauth2:

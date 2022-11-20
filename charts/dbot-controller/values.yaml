@@ -3,8 +3,21 @@ dbot:
     image:
       repo: ghcr.io/dbot-group
       #tag: v0.2.0
-    domain: mgmt-dev.promarkcloud.com
+    domain: dev.dbot-group.com
+  dex:
+    credentials:
+      SAML_SSO_URL: ""
+      SAML_SSO_ISSUER: ""
+      SAML_CA: ""
+  rabbitmq:
+    credentials:
+      host: ""
+      username: ""
+      password: ""
   controller:
+    credentials:
+      HOOK_SERVICE_TOKEN: ""
+      GITLAB_API_TOKEN: ""
     env:
       - name: DEBUG_REQUESTS
         value: "false"

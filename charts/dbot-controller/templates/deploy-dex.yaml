@@ -36,16 +36,16 @@ spec:
         - serve
         - /etc/dex/cfg/config.yaml
         env:
-        - name: DEX_SAML_SSO_URL
+        - name: SAML_SSO_URL
           valueFrom:
             secretKeyRef:
-              key: DEX_SAML_SSO_URL
-              name: dex-saml
-        - name: DEX_SAML_SSO_ISSUER
+              key: SAML_SSO_URL
+              name: dex-credentials
+        - name: SAML_SSO_ISSUER
           valueFrom:
             secretKeyRef:
-              key: DEX_SAML_SSO_ISSUER
-              name: dex-saml
+              key: SAML_SSO_ISSUER
+              name: dex-credentials
         image: ghcr.io/dexidp/dex:v2.30.0
         imagePullPolicy: IfNotPresent
         name: dex
@@ -69,8 +69,8 @@ spec:
           name: config
         - mountPath: /etc/dex/tls
           name: tls
-        - mountPath: /etc/dex/dex-saml
-          name: dex-saml
+        - mountPath: /etc/dex/dex-credentials
+          name: dex-credentials
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -91,7 +91,7 @@ spec:
         secret:
           defaultMode: 420
           secretName: dex.dbot.ingress.tls
-      - name: dex-saml
+      - name: dex-credentials
         secret:
           defaultMode: 420
-          secretName: dex-saml
+          secretName: dex-credentials

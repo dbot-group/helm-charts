@@ -41,17 +41,17 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: host
-                  name: rabbitmq-dbot-default-user
+                  name: rabbitmq-credentials
             - name: RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:
                   key: username
-                  name: rabbitmq-dbot-default-user
+                  name: rabbitmq-credentials
             - name: RABBITMQ_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: rabbitmq-dbot-default-user
+                  name: rabbitmq-credentials
             {{- toYaml $values.env | nindent 12 }}
           resources:
             {{- toYaml $values.resources | nindent 12 }}
